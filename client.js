@@ -10,11 +10,12 @@ const start = () => {
       const publisher = new ROSLIB.Topic({
         ros: ros,
         name:"/usr_cmd",
-        messageType: 'string'
+        messageType: 'std_msgs/String'
       });
 
       const send = (message) => {
-        publisher.publish(message)
+        const msg = new ROSLIB.Message({data: message});
+        publisher.publish(msg);
       }
 
       document.addEventListener("keydown",(event) => {
