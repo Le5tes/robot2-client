@@ -2,11 +2,15 @@
 <html>
   <meta charset="utf-8"/>
   <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+  <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+  <script type="text/javascript" src="http://static.robotwebtools.org/mjpegcanvasjs/current/mjpegcanvas.min.js"></script>
   <script src="client.js"></script>
 
   <body>
+    <div id="mjpeg"></div>
     <!-- <canvas width="640" height="480" id="camera-view-canvas"></canvas> -->
     <input/>
     <button onclick="start()">Start</button>
+    <button onclick="shutdown()">Shut down</button>
   </body>
 </html>

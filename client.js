@@ -1,8 +1,8 @@
-
+let shutdown = () => console.warn("not connected!")
 const start = () => {
   const url = document.querySelector('input').value
   if (url) {
-    const ros = new ROSLIB.Ros({ url: url });
+    const ros = new ROSLIB.Ros({ url: `ws://${url}:9090` });
 
     ros.on('connection', () => {
       console.log('connected')
@@ -11,6 +11,14 @@ const start = () => {
         ros: ros,
         name:"/usr_cmd",
         messageType: 'std_msgs/String'
+      });
+
+      new MJPEGCANVAS.Viewer({
+        divID : 'mjpeg',
+        host : url,
+        width : 640,
+        height : 480,
+        topic : '/image_raw'
       });
 
       const send = (message) => {
@@ -46,6 +54,8 @@ const start = () => {
         send("stop");
         event.preventDefault();
       });
+
+      shutdown = () => send("shutdown")
     });
   }
 }
